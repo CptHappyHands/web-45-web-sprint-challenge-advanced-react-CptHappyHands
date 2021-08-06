@@ -1,17 +1,28 @@
 import React, { Component } from "react";
 import axios from "axios";
+import handlers from "../mocks/handlers";
 
 export default class PlantList extends Component {
   // add state with a property called "plants" - initialize as an empty array
-
+  state = {
+    plants: [],
+  };
   // when the component mounts:
   //   - fetch data from the server endpoint - http://localhost:3333/plants
   //   - set the returned plants array to this.state.plants
 
   componentDidMount() {
-    axios.get('http://localhost:3333/plants')
-      .then(res => {
-        
+    axios
+      .get("http://localhost:3333/plants")
+      .then((res) => {
+        console.log(res);
+        this.setState({
+          ...this.state,
+          plants: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
       });
   }
 
