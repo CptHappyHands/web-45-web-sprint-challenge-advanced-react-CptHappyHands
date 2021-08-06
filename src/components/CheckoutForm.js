@@ -16,10 +16,15 @@ const initialValue = {
 
 const CheckoutForm = () => {
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
-  const [values, handleChanges, handleSubmit] = useForm(initialValue);
+  const [values, handleChanges] = useForm(initialValue);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setShowSuccessMessage(true);
+  };
 
   return (
-    <div className="form">
+    <>
       <form onSubmit={handleSubmit}>
         <h2>Checkout Form</h2>
         <label>
@@ -78,7 +83,7 @@ const CheckoutForm = () => {
           </p>
         </div>
       )}
-    </div>
+    </>
   );
 };
 
